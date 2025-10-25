@@ -165,9 +165,53 @@
 
 						<!-- Mini Posts -->
 							<section>
-								<div class="mini-posts">
-	<?php
-		$mini_posts = get_posts(array('numberposts' => 4));
+    <ul class="posts">
+        <?php 
+        $mini_posts = get_posts(array('numberposts' => 5));
+        
+        if ($mini_posts) :
+            foreach ($mini_posts as $mini_post) :
+                $mini_post_id = $mini_post->ID;
+        ?>
+        
+        <li>
+            <article>
+                <header>
+                    <h3><a href="single.html"><?php echo $mini_post->post_title; ?></a></h3>
+                    <time class="published" datetime="<?php echo $mini_post->post_date; ?>"><?php echo date('F j, Y', strtotime($mini_post->post_date)); ?></time>
+                </header>
+                <a href="single.html" class="image">
+                    <?php
+                    if ( has_post_thumbnail( $mini_post_id ) ) {
+                        echo get_the_post_thumbnail(
+                            $mini_post_id,
+                            'thumbnail',
+                            array(
+                                'class' => 'post-featured-img'
+                            )
+                        );
+                    }
+                    ?>
+                </a>
+            </article>
+        </li>
+        
+        <?php
+            endforeach;
+        endif;
+        ?>
+    </ul>
+</section>
+
+						<!-- Posts List -->
+							<section>
+								<ul class="posts">
+									<li>
+
+                                    <?php 
+
+
+	$mini_posts = get_posts(array('numberposts' => 5));
 		
 		if ($mini_posts) :
 			foreach ($mini_posts as $mini_post) :
@@ -175,26 +219,20 @@
 		?>
 
 
-
-<article class="mini-post">
-			<header>
-				<h3><a href="single.html"><?php echo $mini_post->post_title; ?></a></h3>
-				<time class="published" datetime="<?php echo $mini_post->post_date; ?>"><?php echo date('F j, Y', strtotime($mini_post->post_date)); ?></time>
-				<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-                <!-- <p> 
-                     -->
-                
-			</header>
-
-
-							<!-- foreach ($posts as $post) : -->
-			 <a href="single.html" class="image">
-    <?php
+										<article>
+											<header>
+												<h3><a href="single.html"><?php  echo $mini_post->post_title ?></a></h3>
+												<time class="published" datetime="2015-10-20">October 0, 2015</time>
+											</header>
+											<a href="single.php" class="image">
+                                        
+                                        
+                                          <?php
 	                         if ( has_post_thumbnail( $mini_post_id ) ) {
                                     echo '<a href="single.html" class="image featured">';
      echo get_the_post_thumbnail(
                                         $mini_post_id,
-                                        'medium_large',
+                                        'thumbnail',
                                         array(
                                             'class' => 'post-featured-img'
                                         )
@@ -203,72 +241,21 @@
                                     echo '</a>';                       }
 
                                     ?>
-</a>
-
-        
-		</article>
+                                        </a>
 
 
-        	<?php
+                                            
+										</article>
+
+    
+									</li>
+
+                                                                            	<?php
 			endforeach;
 		endif;
 		?>
 
 								
-
-								</div>
-							</section>
-
-						<!-- Posts List -->
-							<section>
-								<ul class="posts">
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Lorem ipsum fermentum ut nisl vitae</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Convallis maximus nisl mattis nunc id lorem</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Euismod amet placerat vivamus porttitor</a></h3>
-												<time class="published" datetime="2015-10-10">October 10, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic10.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Magna enim accumsan tortor cursus ultricies</a></h3>
-												<time class="published" datetime="2015-10-08">October 8, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic11.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Congue ullam corper lorem ipsum dolor</a></h3>
-												<time class="published" datetime="2015-10-06">October 7, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic12.jpg" alt="" /></a>
-										</article>
-									</li>
-								</ul>
-							</section>
 
 						<!-- About -->
 							<section class="blurb">
