@@ -4,7 +4,15 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="stylesheet" href="<?php echo esc_url( get_stylesheet_uri() ); ?>" type="text/css" />
-<!-- <?php wp_head(); ?> -->
+<!-- 
+ 
+ 
+ <?php wp_head(); 
+
+
+?> 
+
+-->
 </head>
 <body>
 
@@ -52,6 +60,7 @@
 							</section>
 
 						<!-- Links -->
+                         
 							<section>
 								<ul class="links">
 									<li>
@@ -95,13 +104,17 @@
 
 						<?php
 						$posts = get_posts();
-						
+
+
 						if ($posts) :
 							foreach ($posts as $post) :
+
+
 						?>
 
-						<!-- Post -->
-							<article class="post">
+						<!-- Posts -->
+
+                        	<article class="post">
 								<header>
 									<div class="title">
 										<h2><a href="single.php"><?php echo $post->post_title; ?></a></h2>
@@ -153,46 +166,55 @@
 						<!-- Mini Posts -->
 							<section>
 								<div class="mini-posts">
+	<?php
+		$mini_posts = get_posts(array('numberposts' => 4));
+		
+		if ($mini_posts) :
+			foreach ($mini_posts as $mini_post) :
+                 $mini_post_id = $mini_post->ID;
+		?>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="single.html">Vitae sed condimentum</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
-										</article>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="single.html">Rutrum neque accumsan</a></h3>
-												<time class="published" datetime="2015-10-19">October 19, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic05.jpg" alt="" /></a>
-										</article>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="single.html">Odio congue mattis</a></h3>
-												<time class="published" datetime="2015-10-18">October 18, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic06.jpg" alt="" /></a>
-										</article>
+<article class="mini-post">
+			<header>
+				<h3><a href="single.html"><?php echo $mini_post->post_title; ?></a></h3>
+				<time class="published" datetime="<?php echo $mini_post->post_date; ?>"><?php echo date('F j, Y', strtotime($mini_post->post_date)); ?></time>
+				<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
+                <!-- <p> 
+                     -->
+                
+			</header>
 
-									<!-- Mini Post -->
-										<article class="mini-post">
-											<header>
-												<h3><a href="single.html">Enim nisl veroeros</a></h3>
-												<time class="published" datetime="2015-10-17">October 17, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
-										</article>
+
+							<!-- foreach ($posts as $post) : -->
+			 <a href="single.html" class="image">
+    <?php
+	                         if ( has_post_thumbnail( $mini_post_id ) ) {
+                                    echo '<a href="single.html" class="image featured">';
+     echo get_the_post_thumbnail(
+                                        $mini_post_id,
+                                        'medium_large',
+                                        array(
+                                            'class' => 'post-featured-img'
+                                        )
+                                    );
+                                    // Output nothing cause there is no image
+                                    echo '</a>';                       }
+
+                                    ?>
+</a>
+
+        
+		</article>
+
+
+        	<?php
+			endforeach;
+		endif;
+		?>
+
+								
 
 								</div>
 							</section>
