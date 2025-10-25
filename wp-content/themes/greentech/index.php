@@ -117,7 +117,7 @@
                         	<article class="post">
 								<header>
 									<div class="title">
-										<h2><a href="single.php"><?php echo $post->post_title; ?></a></h2>
+										<h2><a href=<?php echo get_permalink($post->ID); ?>     ><?php echo $post->post_title; ?></a></h2>
 										<p><?php echo $post->post_excerpt; ?></p>
 									</div>
 									<div class="meta">
