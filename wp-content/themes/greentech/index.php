@@ -129,7 +129,7 @@
 								<p><?php echo $post->post_content; ?></p>
 								<footer>
 									<ul class="actions">
-										<li><a href="single.html" class="button large">Continue Reading</a></li>
+										<li><a href=<?php echo get_permalink($post->ID); ?>    class="button large">Continue Reading</a></li>
 									</ul>
 									<ul class="stats">
 										<li><a href="#">General</a></li>
@@ -165,7 +165,7 @@
 
 						<!-- Mini Posts -->
 							<section>
-    <ul class="posts">
+    <div class="mini-posts">
         <?php 
         $mini_posts = get_posts(array('numberposts' => 5));
         
@@ -173,34 +173,33 @@
             foreach ($mini_posts as $mini_post) :
                 $mini_post_id = $mini_post->ID;
         ?>
-        
-        <li>
-            <article>
-                <header>
-                    <h3><a href="single.html"><?php echo $mini_post->post_title; ?></a></h3>
-                    <time class="published" datetime="<?php echo $mini_post->post_date; ?>"><?php echo date('F j, Y', strtotime($mini_post->post_date)); ?></time>
-                </header>
-                <a href="single.html" class="image">
-                    <?php
-                    if ( has_post_thumbnail( $mini_post_id ) ) {
-                        echo get_the_post_thumbnail(
-                            $mini_post_id,
-                            'thumbnail',
-                            array(
-                                'class' => 'post-featured-img'
-                            )
-                        );
-                    }
-                    ?>
-                </a>
-            </article>
-        </li>
+    <article class="mini-post">
+            <header>
+                <h3><a href="<?php echo get_permalink($mini_post_id); ?>"><?php echo $mini_post->post_title; ?></a></h3>
+                <time class="published" datetime="<?php echo $mini_post->post_date; ?>">
+                    <?php echo date('F j, Y', strtotime($mini_post->post_date)); ?>
+                </time>
+            </header>
+            <a href="<?php echo get_permalink($mini_post_id); ?>" class="image">
+                <?php
+                if (has_post_thumbnail($mini_post_id)) {
+                    echo get_the_post_thumbnail(
+                        $mini_post_id,
+                        'medium_large',
+                        array('class' => 'post-featured-img')
+                    );
+                }
+                ?>
+            </a>
+        </article>
         
         <?php
             endforeach;
         endif;
         ?>
-    </ul>
+    <!-- </ul>
+	  -->
+	</div>
 </section>
 
 						<!-- Posts List -->
