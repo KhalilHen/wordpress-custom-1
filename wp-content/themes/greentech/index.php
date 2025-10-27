@@ -27,11 +27,16 @@
 						<a href="index.php"><img src="images/logo.svg" alt="" class="logo" /></a>
 						<nav class="links">
 							<ul>
-								<li><a href="#">Lorem</a></li>
-								<li><a href="#">Ipsum</a></li>
-								<li><a href="#">Feugiat</a></li>
-								<li><a href="#">Tempus</a></li>
-								<li><a href="#">Adipiscing</a></li>
+								<?php 
+
+wp_nav_menu(array(
+    'theme_location' => 'header-menu',
+    'container' => 'nav',
+    'container_class' => 'header-navigation',
+    'menu_class' => 'header-menu',
+));
+
+?>
 							</ul>
 						</nav>
 						<nav class="main">
@@ -117,6 +122,7 @@
                         	<article class="post">
 								<header>
 									<div class="title">
+<!-- <a href= -->
 										<h2><a href=<?php echo get_permalink($post->ID); ?>     ><?php echo $post->post_title; ?></a></h2>
 										<p><?php echo $post->post_excerpt; ?></p>
 									</div>
